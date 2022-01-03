@@ -44,3 +44,20 @@ function _each(list, iter) {
 var _get = _curryr(function (obj, key) {
   return obj === null ? undefined : obj[key];
 });
+
+/*
+const slice = Array.prototype.slice;
+function _rest(list, num) {
+    return slice.call(list, num || 1);
+}
+*/
+
+function _reduce(list, iter, memo = 0) {
+  _each(list, (val) => {
+    memo = iter(memo, val);
+  });
+
+  return memo;
+}
+
+console.log(_reduce([1, 2, 3], (a, b) => a + b)); //6
