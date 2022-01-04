@@ -45,12 +45,10 @@ var _get = _curryr(function (obj, key) {
   return obj === null ? undefined : obj[key];
 });
 
-/*
 const slice = Array.prototype.slice;
 function _rest(list, num) {
-    return slice.call(list, num || 1);
+  return slice.call(list, num || 1);
 }
-*/
 
 function _reduce(list, iter, memo = 0) {
   _each(list, (val) => {
@@ -65,9 +63,28 @@ function _pipe() {
   return (arg) => _reduce(fns, (arg, fn) => fn(arg), arg);
 }
 
-const f1 = _pipe(
-  (a) => a + 1,
-  (a) => a * 2
+function _go(arg) {
+  // 첫 번째 값을 제외한 값
+  const fns = _rest(arguments);
+  return _pipe.apply(null, fns)(arg);
+}
+
+// 사용 예시
+_go(
+  users,
+  (users) => _filter(users, (user) => user.age >= 30),
+  (users) => _map(users, _get('name')),
+  console.log
 );
 
-console.log(f1(1)); //4
+// 1. map, filter에 curryr 적용
+const _map = _curryr(_map);
+const _filter = _curryr(_filter);
+
+// 2. 거의 method chaining 수준으로 축약 가능
+_go(
+  users,
+  _filter((user) => user.age >= 30),
+  _map(_get('name')),
+  console.log
+);
