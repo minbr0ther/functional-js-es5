@@ -60,4 +60,14 @@ function _reduce(list, iter, memo = 0) {
   return memo;
 }
 
-console.log(_reduce([1, 2, 3], (a, b) => a + b)); //6
+function _pipe() {
+  const fns = arguments;
+  return (arg) => _reduce(fns, (arg, fn) => fn(arg), arg);
+}
+
+const f1 = _pipe(
+  (a) => a + 1,
+  (a) => a * 2
+);
+
+console.log(f1(1)); //4
