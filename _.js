@@ -64,27 +64,9 @@ function _pipe() {
 }
 
 function _go(arg) {
-  // 첫 번째 값을 제외한 값
   const fns = _rest(arguments);
   return _pipe.apply(null, fns)(arg);
 }
 
-// 사용 예시
-_go(
-  users,
-  (users) => _filter(users, (user) => user.age >= 30),
-  (users) => _map(users, _get('name')),
-  console.log
-);
-
-// 1. map, filter에 curryr 적용
 const _map = _curryr(_map);
 const _filter = _curryr(_filter);
-
-// 2. 거의 method chaining 수준으로 축약 가능
-_go(
-  users,
-  _filter((user) => user.age >= 30),
-  _map(_get('name')),
-  console.log
-);
