@@ -6,7 +6,7 @@
 
 ## 함수형 프로그래밍 정의, 순수함수
 
-![Untitled](./images/Untitled.png)
+<img src='./images/Untitled.png' >
 
 순수 함수
 
@@ -71,7 +71,7 @@ console.log(
 
 ## 요즘 개발 이야기, 함수형 프로그래밍 정의
 
-![Untitled](<%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20(ES5)%203f75bd84268b43379e1e2b66e8ab2492/Untitled%201.png>)
+<img src='./images/Untitled 1.png' >
 
 고가용성: 절대 죽지 않는 서비스 (페이스북은 점검 시간 없다)
 
@@ -85,9 +85,9 @@ OTP Supervisor: 죽으면 바로 살리는 서비스
 - 좋아지는 분산 / 리액티브 환경
 - 동시성 + 병렬성 관련 기술
 
-![Untitled](<%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20(ES5)%203f75bd84268b43379e1e2b66e8ab2492/Untitled%202.png>)
+<img src='./images/Untitled 2.png' >
 
-![Untitled](<%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20(ES5)%203f75bd84268b43379e1e2b66e8ab2492/Untitled%203.png>)
+<img src='./images/Untitled 3.png' >
 
 함수가 먼저나오냐, 객체가 먼저 나오냐에 따라서 함수 혹은 객체 프로그램을 판단할 수 있음
 
@@ -127,7 +127,7 @@ function _map(list, mapper) {
 }
 ```
 
-![Untitled](<%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20(ES5)%203f75bd84268b43379e1e2b66e8ab2492/Untitled%204.png>)
+<img src='./images/Untitled 4.png' >
 
 위와 같이 대입문을 쓰지 않으면 코드가 간결해짐
 
@@ -154,7 +154,7 @@ function _each(list, iter) {
 
 즉 다형성을 지원하기 어렵다.
 
-![Untitled](<%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20(ES5)%203f75bd84268b43379e1e2b66e8ab2492/Untitled%205.png>)
+<img src='./images/Untitled 5.png' >
 
 ⇒ Array like 객체이기 때문에 `.map` 사용 불가
 
@@ -162,7 +162,7 @@ function _each(list, iter) {
 
 높은 다형성, 실용적임, 유연성
 
-![Untitled](<%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20(ES5)%203f75bd84268b43379e1e2b66e8ab2492/Untitled%206.png>)
+<img src='./images/Untitled 6.png' >
 
 ⇒ 우리가 만든 `_map` 함수로 실행하면 잘 동작함
 
@@ -243,7 +243,7 @@ const _get = _curryr(function (obj, key) {
 console.log(_get('name')(users1));
 ```
 
-![Untitled](<%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20(ES5)%203f75bd84268b43379e1e2b66e8ab2492/Untitled%207.png>)
+<img src='./images/Untitled 7.png' >
 
 전에 구현해 두었던 함수에서 \_get으로 대체하여 코드를 줄일 수 있었음
 
