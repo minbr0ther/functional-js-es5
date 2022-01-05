@@ -70,5 +70,16 @@ function _go(arg) {
   return _pipe.apply(null, fns)(arg);
 }
 
+function _is_object(obj) {
+  return typeof obj === 'object' && !!obj;
+}
+
+function _keys(obj) {
+  return _is_object(obj) ? Object.keys(obj) : [];
+}
+
+console.log(_keys(null)); // null
+console.log(_keys([1, 2, 3, 4])); // [ '0', '1', '2', '3' ]
+
 //const _map = _curryr(_map);
 //const _filter = _curryr(_filter);
