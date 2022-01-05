@@ -34,16 +34,18 @@ function _map(list, mapper) {
   return new_list;
 }
 
+var _get = _curryr(function (obj, key) {
+  return obj === null ? undefined : obj[key];
+});
+
+const _length = _get('length');
+
 function _each(list, iter) {
-  for (var i = 0; i < list.length; i++) {
+  for (var i = 0; i < _length(list); i++) {
     iter(list[i]);
   }
   return list;
 }
-
-var _get = _curryr(function (obj, key) {
-  return obj === null ? undefined : obj[key];
-});
 
 const slice = Array.prototype.slice;
 function _rest(list, num) {
@@ -68,5 +70,5 @@ function _go(arg) {
   return _pipe.apply(null, fns)(arg);
 }
 
-const _map = _curryr(_map);
-const _filter = _curryr(_filter);
+//const _map = _curryr(_map);
+//const _filter = _curryr(_filter);
