@@ -95,14 +95,12 @@ function _go(arg) {
   return _pipe.apply(null, fns)(arg);
 }
 
-_go(
-  {
-    13: 'ID',
-    19: 'HD',
-    29: 'YD',
-  },
-  _map(function (name) {
-    return name.toLowerCase();
-  }),
-  console.log
-); //[ 'id', 'hd', 'yd' ]
+const _values = _map(_identity);
+
+function _identity(val) {
+  return val;
+}
+
+function _pluck(data, key) {
+  return _map(data, _get(key));
+}
