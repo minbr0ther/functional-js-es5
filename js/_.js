@@ -104,3 +104,13 @@ function _identity(val) {
 function _pluck(data, key) {
   return _map(data, _get(key));
 }
+
+function _negate(func) {
+  return (val) => !func(val);
+}
+
+function _reject(data, predi) {
+  return _filter(data, _negate(predi));
+}
+
+const _compact = _filter(_identity);

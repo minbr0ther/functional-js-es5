@@ -45,15 +45,31 @@
       //console.log(_values(users[0])); // 값만 꺼낸 배열
 
       //   2. pluck : 키를 통해 값을 수집함
-      console.log(_pluck(users, 'age'));
-      console.log(_pluck(users, 'name'));
-      console.log(_pluck(users, 'id'));
+      // console.log(_pluck(users, 'age'));
+      // console.log(_pluck(users, 'name'));
+      // console.log(_pluck(users, 'id'));
 
-      function _pluck(data, key) {
-        return _map(data, _get(key));
-      }
-
+      // function _pluck(data, key) {
+      //   return _map(data, _get(key));
+      // }
       // [33, 22, 11, ...]
+
+      // function _negate(func) {
+      //   return (val) => !func(val);
+      // }
+
+      // 2. 거르기 (filter의 반대 기능..?)
+      // function _reject(data, predi) {
+      //   //return _filter(data, (val) => !predi(val));
+      //   return _filter(data, _negate(predi));
+      // }
+
+      //console.log(_reject(users, (user) => user.age > 30));
+
+      // 3. compact (값중 truthy만 추출)
+      //const _compact = _filter(_identity);
+
+      //console.log(_compact([1, 2, 0, false, null, {}]));
     </script>
   </body>
 </html>
