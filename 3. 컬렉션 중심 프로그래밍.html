@@ -70,6 +70,18 @@
       //const _compact = _filter(_identity);
 
       //console.log(_compact([1, 2, 0, false, null, {}]));
+
+      // 3. 찾아내기 - find, some, every 등
+
+      //console.log(_find(users, (user) => user.age < 30)); // {id: 40, name: 'PJ', age: 27}
+
+      //console.log(_find_index(users, (user) => user.age < 30)); // 3
+
+      //console.log(_some([1, 2, 5, 10, 20], (val) => val > 20));
+
+      //console.log(_every([1, 2, 5, 10, 20], (val) => val > 10));
+
+      console.log(_some(users, (user) => user.age < 20));
     </script>
   </body>
 </html>

@@ -59,7 +59,9 @@ function _each(list, iter) {
 
 var _map = _curryr(_map),
   _each = _curryr(_each),
-  _filter = _curryr(_filter);
+  _filter = _curryr(_filter),
+  _find = _curryr(_find),
+  _find_index = _curryr(_find_index);
 
 var slice = Array.prototype.slice;
 function _rest(list, num) {
@@ -114,3 +116,35 @@ function _reject(data, predi) {
 }
 
 const _compact = _filter(_identity);
+
+function _find(list, predi) {
+  var keys = _keys(list);
+
+  for (var i = 0; i < keys.length; i++) {
+    const value = list[keys[i]];
+
+    if (predi(value)) return value;
+  }
+}
+
+function _find_index(list, predi) {
+  var keys = _keys(list);
+
+  for (var i = 0; i < keys.length; i++) {
+    if (predi(list[keys[i]])) return i;
+  }
+}
+
+// 하나라도 찾아지는 것이 있으면 true
+function _some(data, predi) {
+  predi = predi || _identity; // predi 없는 경우
+
+  return _find_index(data, predi) !== -1;
+}
+
+// 모든 것이 조건을 만족해야 true
+function _every(data, predi) {
+  predi = predi || _identity; // predi 없는 경우
+
+  return _find_index(data, _negate(predi)) !== -1;
+}
