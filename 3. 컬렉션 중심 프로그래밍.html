@@ -81,7 +81,48 @@
 
       //console.log(_every([1, 2, 5, 10, 20], (val) => val > 10));
 
-      console.log(_some(users, (user) => user.age < 20));
+      // 4. 접기 - reduce, min, max, group_by, count_by
+
+      // 4-1. min, max, min_by, max_by
+
+      // console.log(_min([1, 2, 4, 10, 5, -4]));
+
+      // console.log(_max([1, 2, 4, 10, 5, -4]));
+
+      // console.log(_min_by([1, 2, 4, 10, 5, -4], Math.abs));
+
+      // console.log(_max_by([1, 2, 4, -11, 5, -4], Math.abs));
+
+      // _go(
+      //   users,
+      //   _filter((user) => user.age >= 30),
+      //   _min_by((user) => user.age),
+      //   console.log
+      // );
+
+      // 4-2. group_by, push
+
+      // _go(
+      //   users,
+      //   _group_by((user) => user.age),
+      //   console.log
+      // );
+
+      // 4-3. count_by, inc
+
+      // _go(
+      //   users,
+      //   _count_by((user) => user.age - (user.age % 10)),
+      //   console.log
+      // );
+
+      _go(
+        users,
+        _count_by((user) => user.age - (user.age % 10)),
+        _map((count, key) => `<li>${key}대는 ${count}명 입니다.</li>`),
+        (list) => `<ul>${list.join('')}</ul>`,
+        (html) => document.write(html)
+      );
     </script>
   </body>
 </html>

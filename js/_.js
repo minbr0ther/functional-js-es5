@@ -57,12 +57,6 @@ function _each(list, iter) {
   return list;
 }
 
-var _map = _curryr(_map),
-  _each = _curryr(_each),
-  _filter = _curryr(_filter),
-  _find = _curryr(_find),
-  _find_index = _curryr(_find_index);
-
 var slice = Array.prototype.slice;
 function _rest(list, num) {
   return slice.call(list, num || 1);
@@ -148,3 +142,66 @@ function _every(data, predi) {
 
   return _find_index(data, _negate(predi)) !== -1;
 }
+
+function _min(data) {
+  // 두개의 값이 있다고 생각하고 프로그래밍
+  return _reduce(data, (a, b) => {
+    return a < b ? a : b;
+  });
+}
+
+function _max(data) {
+  // 두개의 값이 있다고 생각하고 프로그래밍
+  return _reduce(data, (a, b) => {
+    return a > b ? a : b;
+  });
+}
+
+function _min_by(data, iter) {
+  return _reduce(data, (a, b) => {
+    return iter(a) < iter(b) ? a : b;
+  });
+}
+
+// iter 조건을 data에 적용하였을때 가장 작은 값
+function _max_by(data, iter) {
+  return _reduce(data, (a, b) => {
+    return iter(a) > iter(b) ? a : b;
+  });
+}
+
+function _push(obj, key, val) {
+  // 객체를 찾아지면 찾아지는 곳에 push, 없으면 빈 arr
+  (obj[key] = obj[key] || []).push(val);
+
+  return obj;
+}
+
+// 함수를 통해 어떤 방식으로 그룹화 할지 정한다
+const _group_by = _curryr((data, iter) =>
+  _reduce(data, (grouped, val) => _push(grouped, iter(val), val), {})
+);
+
+const _head = (list) => list[0];
+
+//
+const _inc = (count, key) => {
+  count[key] ? count[key]++ : (count[key] = 1);
+
+  return count;
+};
+
+const _count_by = _curryr((data, iter) =>
+  _reduce(data, (count, val) => _inc(count, iter(val)), {})
+);
+
+const _pairs = _map((val, key) => [key, val]);
+
+var _map = _curryr(_map),
+  _each = _curryr(_each),
+  _filter = _curryr(_filter),
+  _find = _curryr(_find),
+  _find_index = _curryr(_find_index),
+  _min_by = _curryr(_min_by),
+  _max_by = _curryr(_max_by),
+  _reject = _curryr(_reject);
