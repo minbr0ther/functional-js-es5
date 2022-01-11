@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>4. 자바스크립트에서의 지연 평가</title>
+    <script src="js/partial.js"></script>
+  </head>
+  <body>
+    <script>
+      // 지연 평가를 시작 시키고 유지 시키는(이어 가는) 함수
+      // 1. map
+      // 2. filter, reject
+      _.go(
+        _.range(100),
+        _.map((val) => val * val), // 100번 순회
+        _.filter((val) => val % 2) // 100번 순회
+        //console.log
+      );
+
+      // 지연 평가가 된 '최적화'된 로직
+      // Map, Filter, take => 1, ... => 5 끝! (5번 순회)
+      // 순수함수는 시점과 상관없이 항상 동일한 결과를 만드듬
+      // 함수형 프로그래밍의 특장점이 시작되는 시점
+      _.go(
+        _.range(100),
+        L.map((val) => val * val),
+        L.filter((val) => val % 2),
+        L.take(5)
+        //console.log
+      );
+
+      // 끝을 내는 함수
+      //   - 지연평가는 끝을 내는 함수를 만날때까지
+      //   - 연속적으로 계속 함수를 실행하다가 끝을 내는 함수를 통해서 종료한다
+      // 1. take
+      // 2. some, every, find
+      _.go(
+        _.range(100),
+        L.map((val) => val * val),
+        L.filter((val) => val % 2),
+        L.some((val) => val > 100),
+        console.log
+      );
+    </script>
+  </body>
+</html>
