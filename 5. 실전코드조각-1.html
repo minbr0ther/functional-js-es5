@@ -55,7 +55,7 @@
       // 문제와 함수가 거의 동일하다
       const f1 = _.pipe(posts_by, comments_by_posts);
 
-      // console.log(f1({ user_id: 101 }));
+      // //console.log(f1({ user_id: 101 }));
 
       // 2. 특정인의 posts에 comments를 단 친구의 이름들 뽑기
       const comments_to_user_names = _.map(
@@ -64,23 +64,61 @@
 
       // f2는 f1을 한 다음에 comment를 통해서 user name을 중복없이 뽑는다
       const f2 = _.pipe(f1, comments_to_user_names, _.uniq);
-      console.log(f2({ user_id: 101 }));
+      //console.log(f2({ user_id: 101 }));
 
       // 3. 특정인의 posts에 comments를 단 친구들 카운트 정보
       const f3 = _.pipe(f1, comments_to_user_names, _.count_by);
 
-      console.log(f3({ user_id: 101 }));
+      //console.log(f3({ user_id: 101 }));
 
       // 4. 특정인이 comment를 단 posts 거르기
       _.go(
         _.where(comments, { user_id: 105 }),
         _.pluck('post_id'),
         _.uniq,
-        (post_ids) => _.filter(posts, (post) => _.contains(post_ids, post.id)),
-        console.log
+        (post_ids) => _.filter(posts, (post) => _.contains(post_ids, post.id))
+        //console.log
       );
 
       // 5. users + posts + comments (index_by와 group_by로 효율 높이기)
+      // => 불변적으로 데이터를 다룰 예정
+      // => index_by는 해당하는 배열을 새로운 형태로 바꿔놓는다 (어떠한 키를 기준으로)
+
+      const users2 = _.index_by(users, 'id');
+
+      function find_user_by_id(user_id) {
+        return users2[user_id];
+      }
+
+      const comments2 = _.go(
+        comments,
+        _.map(function (comment) {
+          return _.extend(
+            {
+              // 해당하는 유저의 정보가 더 추가가 됨
+              user: find_user_by_id(comment.user_id),
+            },
+            comment
+          );
+        }),
+        _.group_by('post_id')
+        //console.log
+      );
+
+      const posts2 = _.go(
+        posts,
+        _.map((post) =>
+          _.extend(
+            {
+              comments: comments2[post.id],
+              user: find_user_by_id(post.user_id),
+            },
+            post
+          )
+        ),
+        _.group_by('user_id'),
+        console.log
+      );
 
       // 5.1. 특정인의 posts의 모든 comments 거르기
 
