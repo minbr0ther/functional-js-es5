@@ -116,13 +116,27 @@
             post
           )
         ),
-        _.group_by('user_id'),
-        console.log
+        _.group_by('user_id')
+        //console.log
       );
 
       // 5.1. 특정인의 posts의 모든 comments 거르기
 
-      // 5.2. 특정인의 posts에 comments를 단 친구의 이름들 뽑기
+      // 5.2. 특정인의 posts에 comments를 단 친구의 이름들 뽑
+      _.go(
+        user.posts,
+        _.pluck('comments'),
+        _.flatten,
+        _.pluck('user'),
+        _.pluck('name'),
+        _.uniq
+        //console.log
+      );
+
+      _.go(
+        _.deep_pluck(user, 'posts.comments.user.name'),
+        _uniq //console.log
+      );
 
       // 5.3. 특정인의 posts에 comments를 단 친구들 카운트 정보
 
